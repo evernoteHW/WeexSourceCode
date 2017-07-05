@@ -1,0 +1,47 @@
+{
+  "name": "WeexSDK",
+  "version": "0.0.1",
+  "summary": "A short description of WeexSDK.",
+  "description": "A framework for building Mobile cross-platform UI",
+  "homepage": "http://",
+  "license": {
+    "type": "Copyright",
+    "text": "           WeiHu-INC copyright\n"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "path": "."
+  },
+  "authors": {
+    "WeiHu": "7430328@qq.com"
+  },
+  "source_files": "sdk/WeexSDK/Sources/**/*.{h,m,mm,c}",
+  "resources": [
+    "sdk/WeexSDK/Resources/native-bundle-main.js",
+    "sdk/WeexSDK/Resources/wx_load_error@3x.png"
+  ],
+  "user_target_xcconfig": {
+    "FRAMEWORK_SEARCH_PATHS": "'$(PODS_ROOT)/WeexSDK'"
+  },
+  "requires_arc": true,
+  "prefix_header_file": "sdk/WeexSDK/Sources/Supporting Files/WeexSDK-Prefix.pch",
+  "xcconfig": {
+    "OTHER_LINK_FLAG": "$(inherited) -ObjC"
+  },
+  "frameworks": [
+    "CoreMedia",
+    "MediaPlayer",
+    "AVFoundation",
+    "AVKit",
+    "JavaScriptCore",
+    "GLKit"
+  ],
+  "dependencies": {
+    "SocketRocket": [
+
+    ]
+  },
+  "libraries": "stdc++"
+}
