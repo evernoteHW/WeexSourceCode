@@ -28,7 +28,7 @@
  *
  *  @param boxShadow
  *
- *  @param view
+ *  @param compareBoxShadow
  *
  *  @return if not equal return NO, if equal return YES
  */

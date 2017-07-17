@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <WeexSDK/WeexSDK.h>
+#import "WXImgLoaderDefaultImpl.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
     // Override point for customization after application launch.
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
+    [WXSDKEngine registerHandler:[WXImgLoaderDefaultImpl new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    
     return YES;
 }
 

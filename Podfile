@@ -19,5 +19,6 @@ target 'WeexSourceCode' do
   end
 
   pod 'WeexSDK', :path=>'./'
+  pod 'SDWebImage'
 
 end

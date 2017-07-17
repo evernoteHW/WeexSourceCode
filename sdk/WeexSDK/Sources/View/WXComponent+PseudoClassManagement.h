@@ -58,7 +58,7 @@
 /**
  * @abstract Called when component's style are updated
  *
- * @param styles The updated style dictionary
+ * @param pseudoClassStyles The updated style dictionary
  * @discussion It can be overrided to handle specific style updating. The method is called on the main thread.
  **/
 - (void)updatePseudoClassStyles:(NSDictionary *)pseudoClassStyles;

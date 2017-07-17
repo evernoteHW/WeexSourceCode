@@ -41,8 +41,8 @@
         NSLog(@"%@", @"Update Finish...");
     };
 //    NSString *BUNDLE_URL = [NSString stringWithFormat:@"file://%@/bundlejs/index.js",[NSBundle mainBundle].bundlePath];
-    
-    NSString *BUNDLE_URL = [NSString stringWithFormat:@"file://%@/hello.js",[NSBundle mainBundle].bundlePath];
+    NSString *BUNDLE_URL = @"http://192.168.1.122:8080/dist/app.weex.js";
+//    NSString *BUNDLE_URL = [NSString stringWithFormat:@"file://%@/hello.js",[NSBundle mainBundle].bundlePath];
     NSURL *URL = [NSURL URLWithString:BUNDLE_URL];
     NSString *randomURL = [NSString stringWithFormat:@"%@%@random=%d",URL.absoluteString,URL.query?@"&":@"?",arc4random()];
     [_instance renderWithURL:[NSURL URLWithString:randomURL] options:@{@"bundleUrl":URL.absoluteString} data:nil];

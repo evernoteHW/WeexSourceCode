@@ -18,6 +18,7 @@
 		749BC8F51F0CF83000EF1D1D /* WeexSourceCodeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 749BC8F41F0CF83000EF1D1D /* WeexSourceCodeUITests.m */; };
 		749BC9031F0CFAF200EF1D1D /* bundlejs in Resources */ = {isa = PBXBuildFile; fileRef = 749BC9021F0CFAF200EF1D1D /* bundlejs */; };
 		749BC9051F0CFC2B00EF1D1D /* hello.js in Resources */ = {isa = PBXBuildFile; fileRef = 749BC9041F0CFC2B00EF1D1D /* hello.js */; };
+		74F52E3D1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F52E3C1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.m */; };
 		AFA9658906A7B9F66F26D2C0 /* libPods-WeexSourceCodeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 181346FCFF6A65C9A2CB2135 /* libPods-WeexSourceCodeTests.a */; };
 		E551BB10BE554DA8146E69FC /* libPods-WeexSourceCode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF3126F70FC6A349705C912 /* libPods-WeexSourceCode.a */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,8 @@
 		749BC8F61F0CF83000EF1D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		749BC9021F0CFAF200EF1D1D /* bundlejs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundlejs; sourceTree = "<group>"; };
 		749BC9041F0CFC2B00EF1D1D /* hello.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hello.js; sourceTree = "<group>"; };
+		74F52E3B1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderDefaultImpl.h; sourceTree = "<group>"; };
+		74F52E3C1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
 		DC3852EC21609DF924ED02C0 /* Pods-WeexSourceCodeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeexSourceCodeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeexSourceCodeUITests/Pods-WeexSourceCodeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2FCB37FE85915FCA20A99EB /* Pods-WeexSourceCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeexSourceCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeexSourceCode/Pods-WeexSourceCode.release.xcconfig"; sourceTree = "<group>"; };
 		ECF3126F70FC6A349705C912 /* libPods-WeexSourceCode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeexSourceCode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +148,7 @@
 		749BC8CE1F0CF82F00EF1D1D /* WeexSourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				74F52E3A1F0F2A50003EA9E6 /* WeexConfig */,
 				749BC8D21F0CF82F00EF1D1D /* AppDelegate.h */,
 				749BC8D31F0CF82F00EF1D1D /* AppDelegate.m */,
 				749BC8D51F0CF82F00EF1D1D /* ViewController.h */,
@@ -186,6 +190,15 @@
 			path = WeexSourceCodeUITests;
 			sourceTree = "<group>";
 		};
+		74F52E3A1F0F2A50003EA9E6 /* WeexConfig */ = {
+			isa = PBXGroup;
+			children = (
+				74F52E3B1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.h */,
+				74F52E3C1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.m */,
+			);
+			path = WeexConfig;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,6 +212,7 @@
 				749BC8CA1F0CF82F00EF1D1D /* Resources */,
 				B8C94CC9AE795675E23CF770 /* [CP] Embed Pods Frameworks */,
 				C6E816A942C66B7015DEB099 /* [CP] Copy Pods Resources */,
+				749BC9061F0E339900EF1D1D /* Start Samples */,
 			);
 			buildRules = (
 			);
@@ -371,6 +385,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexSourceCodeUITests/Pods-WeexSourceCodeUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		749BC9061F0E339900EF1D1D /* Start Samples */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Start Samples";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\n\nif [[ \"$CONFIGURATION\" = \"Debug\" && \"$PLATFORM_NAME\" != \"iphonesimulator\" ]]; then\nipconfig getifaddr en0 | awk '{printf(\"%s\",$0)}' > \"$DEST/localServer-ip.txt\"\nfi\n\nset -x\n\nif nc -w 5 -z localhost 12580 ; then\necho \"Port 12580 already in use, server is running\"\nelse\nopen -a Terminal \"$SRCROOT/weex/start\"\nfi\n";
+		};
 		8AC63053700630181DD588E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				749BC8D71F0CF82F00EF1D1D /* ViewController.m in Sources */,
+				74F52E3D1F0F2A72003EA9E6 /* WXImgLoaderDefaultImpl.m in Sources */,
 				749BC8D41F0CF82F00EF1D1D /* AppDelegate.m in Sources */,
 				749BC8D11F0CF82F00EF1D1D /* main.m in Sources */,
 			);
